@@ -9,13 +9,6 @@ public class User {
     private String position;
     private String role;
     private Integer departmentId;
-//constructor with departmentId as null
-    public User(String name, String bio, String position, String role) {
-        this.name = name;
-        this.bio = bio;
-        this.position = position;
-        this.role = role;
-    }
 //constructor with departmentId available
     public User(String name, String bio, String position, String role, Integer departmentId) {
         this.name = name;
