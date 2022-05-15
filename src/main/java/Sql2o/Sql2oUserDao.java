@@ -52,7 +52,7 @@ public class Sql2oUserDao implements UserDao {
         }
     }
 
-
+//finding a user by their id
     @Override
     public User findById(int id) {
         try (Connection conn = DB.connect.open()) {
