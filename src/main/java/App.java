@@ -1,6 +1,8 @@
 import Sql2o.Sql2oDepartmentDao;
+import Sql2o.Sql2oNewsDao;
 import Sql2o.Sql2oUserDao;
 import models.Department;
+import models.News;
 import models.User;
 
 public class App {
@@ -18,6 +20,14 @@ public class App {
         System.out.println(userDao.getAll());
         System.out.println(departmentDao.findById(1));
 
+        News headlines = new News("politics","elections to be held soon", 2);
+        Sql2oNewsDao newsDao = new Sql2oNewsDao();
+        newsDao.add(headlines);
+        System.out.println(newsDao.getAll());
+        System.out.println(newsDao.findById(1));
+        newsDao.update(4, "trending", "men take skin care serious", 2);
+//        System.out.println(newsDao.update(2, "trending", "skin care for women", 2);
+//        System.out.println(newsDao.deleteById(2));
     }
 
 }
