@@ -1,4 +1,4 @@
-package Sql2o;
+package sql2o;
 
 import models.User;
 import org.junit.After;
