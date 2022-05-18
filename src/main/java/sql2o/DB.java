@@ -1,4 +1,4 @@
-package Sql2o;
+package sql2o;
 
 import org.sql2o.Sql2o;
 
