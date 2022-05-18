@@ -1,8 +1,7 @@
-package Sql2o;
+package sql2o;
 
 import interfaces.NewsDao;
 import models.News;
-import models.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2oException;
 
