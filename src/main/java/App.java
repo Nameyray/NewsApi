@@ -1,9 +1,10 @@
-import Sql2o.Sql2oDepartmentDao;
-import Sql2o.Sql2oNewsDao;
-import Sql2o.Sql2oUserDao;
-import com.google.gson.Gson;
+import exceptions.ApiException;
 import models.Department;
 import models.News;
+import sql2o.Sql2oDepartmentDao;
+import sql2o.Sql2oNewsDao;
+import sql2o.Sql2oUserDao;
+import com.google.gson.Gson;
 import models.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -39,14 +40,14 @@ public class App {
 //        System.out.println(newsDao.update(2, "trending", "skin care for women", 2);
 //        System.out.println(newsDao.deleteById(2));
 
-        String connect= "jdbc:postgresql://localhost:5432/my_news";
-        Sql2o sql2o = new Sql2o(connect, "rachael", "cravings");
         Sql2oUserDao sql2oUserDao =new Sql2oUserDao();
-        Connection conn = sql2o.open();
+        Sql2oNewsDao sql2oNewsDao = new Sql2oNewsDao();
+        Sql2oDepartmentDao deptDao = new Sql2oDepartmentDao();
+        Gson gson = new Gson();
 
-        //adding a new user
-        post("add_user", (request,response)->{
-            Gson gson = new Gson();
+
+//        //adding a new user
+        post("/user/new", (request,response)->{
             User user = gson.fromJson(request.body(), User.class);
             sql2oUserDao.add(user);
             ResponseObject responseObject = new ResponseObject(201,"Success!");
@@ -55,16 +56,72 @@ public class App {
 
             return gson.toJson(responseObject);
         });
-//Route to get all users
-        get("get_all_users", (request, response)-> {
-            Gson gson = new Gson();
-            List<User> list = sql2oUserDao.getAll();
-            ResponseArray responseArray =  new ResponseArray(200,"success");
-            responseArray.setData(Collections.singletonList(list));
-            System.out.println(list.size());
-            return gson.toJson(responseArray);
+//adding a new department
+        post("/department/new", (request,response)->{
+            Department department = gson.fromJson(request.body(), Department.class);
+            deptDao.add(department);
+            ResponseObject responseObject = new ResponseObject(201,"Success!");
+            responseObject.setData(new Object());
+            response.status(201);
+
+            return gson.toJson(responseObject);
+        });
+//getting all departments
+        get("/departments", "application/json", (req, res) -> { //accept a request in format JSON from an app
+                    res.type("application/json");
+
+                    System.out.println(deptDao.getAll());
+                    return gson.toJson(deptDao.getAll());//send
+
+                });
+
+//finding a department by id
+        get("/departments/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            int departmentId = Integer.parseInt(req.params(":id"));
+            res.type("application/json");
+
+            System.out.println(deptDao.findById(departmentId));
+            return gson.toJson(deptDao.findById(departmentId));//send
 
         });
+
+//Route to get all users
+
+        get("/get_all_users", (request, response)-> {
+            List<User> list = sql2oUserDao.getAll();
+            return gson.toJson(list);
+
+        });
+
+       //getting a new news
+        post("/news/new", (request,response)->{
+           News news = gson.fromJson(request.body(),News.class);
+            sql2oNewsDao.add(news);
+            ResponseObject responseObject = new ResponseObject(201,"Success!");
+            responseObject.setData(new Object());
+            response.status(201);
+
+            return gson.toJson(news);
+        });
+
+        //getting all news
+        get("/news", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            res.type("application/json");
+
+            System.out.println(sql2oNewsDao.getAll());
+            return gson.toJson(sql2oNewsDao.getAll());//send
+
+        });
+
+        //finding news by id
+        get("/news/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            res.type("application/json");
+
+            System.out.println(sql2oNewsDao.findById(Integer.parseInt(req.params(":id"))));
+            return gson.toJson(sql2oNewsDao.findById(Integer.parseInt(req.params(":id"))));//send
+
+        });
+
 
     }
 
