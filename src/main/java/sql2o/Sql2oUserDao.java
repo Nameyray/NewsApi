@@ -1,4 +1,4 @@
-package Sql2o;
+package sql2o;
 
 import interfaces.UserDao;
 import models.User;
