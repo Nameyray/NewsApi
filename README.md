@@ -11,7 +11,8 @@ A REST API for gathering news and retrieving users and departments
 Internet connection
 
 access to a browser
-fork from 
+
+fork from https://github.com/Nameyray/NewsApi.git
 
 **PSQL**
 CREATE DATABASE my_news;
