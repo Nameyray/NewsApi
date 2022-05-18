@@ -3,10 +3,13 @@
 **By Rachel Namiba**
 
 **Description**
+
 A REST API for gathering news and retrieving users and departments
 
 **Installation Requirements**
+
 Internet connection
+
 access to a browser
 fork from 
 
@@ -41,9 +44,14 @@ CREATE DATABASE my_news_test WITH TEMPLATE my_news;
 
 **Technologies Used**
 IntelliJ IDEA
+
 Java
+
 Spark
+
 PostgreSql
 
+**Knownbugs**
 
+Deployment
 
