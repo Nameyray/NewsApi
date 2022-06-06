@@ -45,26 +45,21 @@ CREATE DATABASE my_news_test WITH TEMPLATE my_news;
 
 **End Points**
 
- ---:**URL** ---: **HTTP VERB** ---: **DESCRIPTION**
  
-/user/new        POST  Adding a new user
 
-/department/new  POST  Adding a new department
-
-/news/new        POST  Adding new news
-
-/departments     GET   Getting all departments
-
-/get_all_users   GET   Getting all users
-
-/news            GET   Getting all news
-
-/news/:id        GET   Finding news by id
-
-/departments/:id GET   Finding a department by their id
-
+|  **URL**                |     **HTTP VERB**      |   **DESCRIPTION**                  |
+| ------------------------|:----------------------:|-----------------------------------:|
+|/user/new                | POST                  | Adding a new user                   |
+| /department/new         | POST                  | Adding a new department             |
+| /news/new               | POST                  | Adding new news                     |
+|/departments             | GET                   | Getting all departments              
+|/get_all_users           | GET                   | Getting all users
+|/news                    | GET                   | Getting all news
+|/news/:id                | GET                   | Finding news by id
+|/departments/:id         | GET                   | Finding a department by their id   
 
 **Technologies Used**
+
 IntelliJ IDEA
 
 Java
